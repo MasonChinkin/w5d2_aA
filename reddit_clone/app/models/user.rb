@@ -17,6 +17,11 @@ class User < ApplicationRecord
 
     before_validation :ensure_session_token
 
+    has_many :posts
+    has_many :subs
+    has_many :postsubs
+    has_many :comments
+
     attr_reader :password
 
     def ensure_session_token

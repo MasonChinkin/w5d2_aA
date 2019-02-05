@@ -1,6 +1,15 @@
 <h1>Editing User</h1>
 
-<%= render 'form', user: @user %>
+<form action="<%= user_url(@user) %>" method="post">
+    <%= auth_token %>
+    <input type='hidden' name='_method' value='patch'>
 
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+    <label> Username:
+        <input type='text' name='user[username]' value='<%= @user.username %>'>
+    </label>
+    <br>
+    <label> Password:
+        <input type='password' name='user[password]' value='<%= @user.password %>'>
+    </label>
+    <input type='submit' value='Make Changes'>
+</form>

@@ -1,5 +1,15 @@
-<h1>New User</h1>
+<h1>Sign Up</h1>
 
-<%= render 'form', user: @user %>
+<form action="<%= users_url %>" method="post">
+    <%= auth_token %>
+    <input type='hidden' name='_method' value='post'>
 
-<%= link_to 'Back', users_path %>
+    <label> Username:
+        <input type='text' name='user[username]' value='<%= %>'>
+    </label>
+    <br>
+    <label> Password:
+        <input type='password' name='user[password]' value='<%= %>'>
+    </label>
+    <input type='submit' value='Sign Up'>
+</form>

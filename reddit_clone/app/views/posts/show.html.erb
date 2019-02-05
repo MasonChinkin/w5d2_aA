@@ -1,4 +1,7 @@
-<p id="notice"><%= notice %></p>
+<li><a href="<%= sub_url(@post.sub_id) %>">Back to Sub</a></li>
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+<ul>
+    <li><%= @post.title %></li>
+    <li><%= @post.content %></li>
+    <li><a href="<%= edit_post_url(@post) %>">Edit Post</a></li>
+</ul>

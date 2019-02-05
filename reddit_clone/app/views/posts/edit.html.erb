@@ -1,6 +1,16 @@
 <h1>Editing Post</h1>
 
-<%= render 'form', post: @post %>
+<form action="<%= post_url(@post) %>" method="post">
+    <%= auth_token %>
+    <input type='hidden' name='_method' value='patch'>
 
-<%= link_to 'Show', @post %> |
-<%= link_to 'Back', posts_path %>
+    <label> Title:
+        <input type='text' name='post[title]' value='<%= @post.title %>'>
+    </label>
+    <br>
+    <label> Content:
+        <input type='text' name='post[content]' value='<%= @post.content %>'>
+    </label>
+    <input type='submit' value='Make Changes'>
+</form>
+

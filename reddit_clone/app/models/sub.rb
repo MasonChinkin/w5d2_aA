@@ -14,5 +14,6 @@ class Sub < ApplicationRecord
     validates :title, :description, :user_id, presence: true
 
     has_many :posts
+    has_many :postsubs
     belongs_to :user
 end

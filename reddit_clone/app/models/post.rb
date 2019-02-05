@@ -11,4 +11,11 @@
 #
 
 class Post < ApplicationRecord
+    validates :title, :sub_id, :user_id, presence: true
+
+    has_many :postsubs
+
+    belongs_to :sub
+    belongs_to :user
+    has_many :comments
 end
