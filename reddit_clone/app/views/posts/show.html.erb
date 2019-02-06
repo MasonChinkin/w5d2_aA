@@ -5,3 +5,18 @@
     <li><%= @post.content %></li>
     <li><a href="<%= edit_post_url(@post) %>">Edit Post</a></li>
 </ul>
+<br>
+<a href="<%= new_post_comment_url(@post) %>">Make Comment</a>
+<br>
+
+--------------------------------------------------------------------
+
+<h3>Comments<h3>
+<br>
+<ul>
+    <% @post.comments.each do |comment| %>
+        <li><%=comment.content%></li>
+    <% end %>
+</ul>
+
+<%= flash[:errors] if flash[:errors] %>

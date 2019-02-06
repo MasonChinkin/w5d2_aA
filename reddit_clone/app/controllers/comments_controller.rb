@@ -1,37 +1,37 @@
 class CommentsController < ApplicationController
-    before_action :require_sign_in
+  before_action :require_sign_in
   
   def new
-    @post = Post.new
+    @comment = Comment.new
   end
 
   def show
-    @post = Post.find(params[:id])
+    @comment = Comment.find(params[:id])
   end
 
   def create
-    @post = Post.new(post_params)
-    @post.user_id = current_user.id
-    if @post.save
-      redirect_to post_url(@post)
+    @comment = Comment.new(comment_params)
+    @comment.user_id = current_user.id
+    if @comment.save
+      redirect_to post_url(@comment.post_id)
     else
-      flash.now[:errors] = @post.errors.full_messages
-      render :new
+      flash[:errors] = @comment.errors.full_messages
+      redirect_to post_url(@comment.post_id)
     end
   end
 
   def edit
-    @post = Post.find(params[:id])
+    @comment = Comment.find(params[:id])
   end
 
   def update
-    @post = Post.find(params[:id])
-    if @post.user_id == current_user.id
-      @post.update_attributes(post_params)
-      redirect_to post_url(@post)
+    @comment = Comment.find(params[:id])
+    if @comment.user_id == current_user.id
+      @comment.update_attributes(comment_params)
+      redirect_to post_url(@comment.post_id)
     else
-      flash[:errors] = @post.errors.full_messages
-      redirect_to post_url(@post)
+      flash[:errors] = @comment.errors.full_messages
+      redirect_to post_url(@comment.post_id)
     end
   end
 
@@ -40,7 +40,8 @@ class CommentsController < ApplicationController
 
   private
 
-  def post_params
-    params.require(:post).permit(:title, :url, :content, :sub_id)
+  def comment_params
+    # params.require(:comment).permit(:content)
+    params.require(:comment).permit(:content, :post_id)
   end
 end

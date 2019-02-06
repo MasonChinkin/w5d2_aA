@@ -12,6 +12,7 @@
 
 class Comment < ApplicationRecord
     validates :user_id, :content, :post_id, presence: true
+    validates :content, length: {minimum: 1}
 
     belongs_to :user
     belongs_to :post
